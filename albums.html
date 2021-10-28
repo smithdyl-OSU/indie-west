@@ -10,16 +10,25 @@
 
     <title>Indie West</title>
   </head>
-  <div class="topnav">
-    <a class="active" href="#users">Users</a>
-    <a href="#artists">Artists</a>
-    <a href="#albums">Albums</a>
-    <a href="#songs">Songs</a>
-	<a href="#orders">Orders</a>
-	<a href="#album_owners">Album_Owners</a>
-	<a href="#order_contents">Order_Contents</a>
-  </div> 
-  <h1>Manage Users</h1>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container-fluid">
+        <a class="navbar-brand" href="#">Indie West</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+            <a class="nav-link" href="#">Users</a>
+            <a class="nav-link" href="#">Orders</a>
+            <a class="nav-link" href="#">Order_Contents</a>
+            <a class="nav-link" href="/albums.html">Albums</a>
+            <a class="nav-link" href="/albums_owners.html">Albums</a>
+            <a class="nav-link" href="/artists.html">Artists</a>
+            <a class="nav-link" href="/songs.html">Songs</a>
+            </div>
+        </div>
+        </div>
+    </nav>
   <body>
 	<!-- Does the UI utilize a SELECT for every table in the schema? In other words, data from each table in the schema should be displayed on the UI. Note: it is generally not acceptable for just a single query to join all tables and displays them.
 	Does at least one SELECT utilize a search/filter with a dynamically populated list of properties?
@@ -29,71 +38,79 @@
 	Is there at least one UPDATE for any one entity? In other words, in the case of Products, can productName, listPrice, qtyOnHand, e.g. be updated for a single ProductID record?
 	Is at least one relationship NULLable? In other words, there should be at least one optional relationship, e.g. having an Employee might be optional for any Order. Thus it should be feasible to edit an Order and change the value of Employee to be empty.
 	Do you have any other suggestions for the team to help with their HTML UI? -->
-    <table>
-	<colgroup></colgroup>
-	  <thead>
-		<tr>
-			<th>customerID</th>
-			<th>firstName</th>
-			<th>lastName</th>
-			<th>birthDate</th>
-			<th>zip</th>
-			<th>email</th>
-			<th></th>
-		</tr>
-	  </thead>
-	  <tbody>
-		<tr>
-			<td>1</td>
-			<td>John</td>
-			<td>McPerson</td>
-			<td>1/1/2000</td>
-			<td>John@email.com</td>
-			<td>97035</td>
-			<td>Edit</td>
-		</tr>
-		<tr>
-			<td>2</td>
-			<td>Bat</td>
-			<td>Man</td>
-			<td>5/1/1939</td>
-			<td>batman@batcave.com</td>
-			<td>98101</td>
-			<td>Edit</td>
-		</tr>
-		<tr>
-			<td>3</td>
-			<td>Jane</td>
-			<td>Doe</td>
-			<td>6/22/1972</td>
-			<td>doe.jane@email.com</td>
-			<td>94104</td>
-			<td>Edit</td>
-		</tr>
-	  </tbody>
-    </table>
-	<form>
-      <div>
-        <label for="firstName">First Name</label>
-        <input type="text" id="firstName">
+    <div class="container">
+        <div class="row">
+            <div class="text-center">
+                <h1>Manage Albums</h1>
+            </div>
+    </div>
+
+    <div class="container-fluid">
+        <a class="navbar-brand">Search Albums</a>
+        <form class="d-flex">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
       </div>
-      <div>
-        <label for="lastName">Last Name</label>
-        <input type="text" id="lastName">
-      </div>
-      <div>
-        <label for="birthDate">Birthdate</label>
-        <input type="date" id="birthDate">
-      </div>
-	  <div>
-        <label for="email">Email</label>
-        <input type="email" id="email">
-      </div>
-	  <div>
-        <label for="zip">Zip</label>
-        <input type="text" id="zip">
-      </div>
-      <button type="submit">Add User</button>  
-	</form>
+    <br>
+    <br>
+
+    
+    <table class="table">
+        <thead>
+            <tr>
+            <th scope="col">AlbumID</th>
+            <th scope="col">Title</th>
+            <th scope="col">Genre</th>
+            <th scope="col">Release</th>
+            <th scope="col">Update</th>
+            <th scope="col">Remove</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <!-- <tr>
+            <th scope="row">1</th>
+            <td>Zerwee</td>
+            <td>Rock</td>
+            <td>@mdo</td>
+            </tr>
+            <tr>
+            <th scope="row">2</th>
+            <td>Jacob</td>
+            <td>Thornton</td>
+            <td>@fat</td>
+            </tr>
+            <tr>
+            <th scope="row">3</th>
+            <td colspan="2">Larry the Bird</td>
+            <td>@twitter</td>
+            </tr> -->
+        </tbody>
+        </table>
+    <br>
+    <br>
+
+    <form class="row g-3">
+        <div class="col-md-4">
+          <label for="inputTitle" class="form-label">Title</label>
+          <input type="text" class="form-control" id="inputTitle">
+        </div>
+        <div class="col-md-4">
+          <label for="inputGenre" class="form-label">Genre</label>
+          <input type="text" class="form-control" id="inputGenre">
+        </div>
+        <div class="col-md-4">
+            <label for="inputDate" class="form-label">Release Date</label>
+            <input type="date" class="form-control" id="inputDate">
+          </div>
+        <div class="mb-3">
+            <label for="formFile" class="form-label">Album Art</label>
+            <input class="form-control" type="file" id="formFile">
+          </div>
+        <div class="col-12">
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+      </form>
   </body>
 </html>
