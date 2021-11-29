@@ -12,13 +12,13 @@ app.use(bodyParser.json());
 app.set('port', process.env.PORT || 3000);
 
 // Variable Database
-const db = require('./db.js');
+const db = require('./dbcon.js');
 
 
 // Routes
 
 // Renders the home page
-app,get('/', (req, res) => {
+app.get('/', (req, res) => {
     res.render('home')
     });
 
