@@ -45,15 +45,6 @@ app.get('/artists/:name', (req, res) => {
     });
 });
 
-
-// Add a new artist to the database
-app.post('/artists', (req, res) => {
-    
-
-
-
-
-
 // Renders a 404 status code if the page is not found
 app.use(function(req, res, next) {
     res.status(404);
