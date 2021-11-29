@@ -1,15 +1,14 @@
 const express = require('express');
 const app = express();
-const bodyParser = require('body-parser');
 const mysql = require('mysql');
 const handlebars = require('express-handlebars');
+const PORT = process.env.PORT || 3001;
 
 app.engine('handlebars', handlebars.engine);
 app.set('view engine', 'handlebars');
 app.use(express.static('public'));
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
-app.set('port', process.env.PORT || 3000);
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 // Variable Database
 const db = require('./dbcon.js');
@@ -27,23 +26,23 @@ app.get('/', (req, res) => {
 // Artists //
 
 // Get/Show all artists
-app.get('/artists', (req, res) => {
-    let query = 'SELECT * FROM artists';
+// app.get('/artists', (req, res) => {
+//     let query = 'SELECT * FROM artists';
 
-    db.pool.query(query, (err, rows) => {
-        res.render('artists', { data: rows });
-    });
-});
+//     db.pool.query(query, (err, rows) => {
+//         res.render('artists', { data: rows });
+//     });
+// });
 
-// Filters artists by name
-app.get('/artists/:name', (req, res) => {
-    let query = 'SELECT * FROM artists WHERE name = ?';
-    let name = req.params.name;
+// // Filters artists by name
+// app.get('/artists/:name', (req, res) => {
+//     let query = 'SELECT * FROM artists WHERE name = ?';
+//     let name = req.params.name;
 
-    db.pool.query(query, [name], (err, rows) => {
-        res.render('artists', { data: rows });
-    });
-});
+//     db.pool.query(query, [name], (err, rows) => {
+//         res.render('artists', { data: rows });
+//     });
+// });
 
 // Renders a 404 status code if the page is not found
 app.use(function(req, res, next) {
@@ -59,6 +58,6 @@ app.use(function(err, req, res, next) {
 });
 
 // App starts listening on giben port
-app.listen(app.get('port'), () => {
-    console.log('Server started on port ' + app.get('port') + '; press Ctrl-C to terminate.');
+app.listen(PORT, () => {
+    console.log(`Server started on ${PORT}; press Ctrl-C to terminate.`);
 });
