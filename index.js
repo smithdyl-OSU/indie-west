@@ -1,48 +1,36 @@
+/*
+Initial setup of the application 
+*/
+
+
 const express = require('express');
 const app = express();
-const mysql = require('mysql');
-const handlebars = require('express-handlebars');
+const handlebars = require('express-handlebars').create({
+    defaultLayout: 'main'
+    });
+
 const PORT = process.env.PORT || 3001;
+const bodyParser = require('body-parser');
+
 
 app.engine('handlebars', handlebars.engine);
+app.use(bodyParser.urlencoded({ extended: true }));
 app.set('view engine', 'handlebars');
-app.use(express.static('public'));
-app.use(express.urlencoded({ extended: true }));
+app.use('/static' ,express.static('public'));
 app.use(express.json());
 
 // Variable Database
-const db = require('./dbcon.js');
+const mysql = require('./dbcon.js');
 
+app.set('mysql', mysql);
 
-// Routes
-
-// Renders the home page
-app.get('/', (req, res) => {
-    res.render('home')
-    });
-
-// 
-
-// Artists //
-
-// Get/Show all artists
-// app.get('/artists', (req, res) => {
-//     let query = 'SELECT * FROM artists';
-
-//     db.pool.query(query, (err, rows) => {
-//         res.render('artists', { data: rows });
-//     });
-// });
-
-// // Filters artists by name
-// app.get('/artists/:name', (req, res) => {
-//     let query = 'SELECT * FROM artists WHERE name = ?';
-//     let name = req.params.name;
-
-//     db.pool.query(query, [name], (err, rows) => {
-//         res.render('artists', { data: rows });
-//     });
-// });
+// Routes including helper functions
+app.use('/artists', require('./artists.js'));
+app.use('/albums', require('./albums.js'));
+// app.use('/songs', require('./songs.js'));
+// app.use('/orders', require('./orders.js'));
+// app.use('/users', require('./users.js'));
+app.use('/', require('./home.js'));
 
 // Renders a 404 status code if the page is not found
 app.use(function(req, res, next) {
@@ -59,5 +47,5 @@ app.use(function(err, req, res, next) {
 
 // App starts listening on giben port
 app.listen(PORT, () => {
-    console.log(`Server started on ${PORT}; press Ctrl-C to terminate.`);
+    console.log(`Server started on http://localhost:${PORT} ; press Ctrl-C to terminate.`);
 });
