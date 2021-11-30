@@ -4,7 +4,7 @@ module.exports = function() {
 
     // function that gets artist information from the database
     function getArtists(res, mysql, context, complete) {
-        mysql.pool.query("SELECT id, name FROM artists", function(error, results, fields) {
+        mysql.pool.query("SELECT artistID, name FROM artists", function(error, results, fields) {
             if (error) {
                 res.write(JSON.stringify(error));
                 res.end();

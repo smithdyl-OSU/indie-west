@@ -9,7 +9,7 @@ const handlebars = require('express-handlebars').create({
     defaultLayout: 'main'
     });
 
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3002;
 const bodyParser = require('body-parser');
 
 
