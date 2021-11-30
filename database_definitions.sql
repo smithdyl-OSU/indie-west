@@ -12,8 +12,8 @@ CREATE TABLE artists (
 -- Dumping data for table `artists`
 --
 
-LOCK TABLES artists WRITE;
-INSERT INTO artists VALUES (1, 'Elliott Smith'), (2, 'Sleater-Kinney'), (3, 'Microphones');
+LOCK TABLES `artists` WRITE;
+INSERT INTO `artists` VALUES (1, 'Elliott Smith'), (2, 'Sleater-Kinney'), (3, 'Microphones');
 UNLOCK TABLES;
 
 --
