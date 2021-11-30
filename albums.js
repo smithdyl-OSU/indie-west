@@ -4,7 +4,7 @@ module.exports = function() {
 
     // function that gets album information from the database
     function getAlbums(res, mysql, context, complete) {
-        mysql.pool.query("SELECT albumID, title, albumArt, genre, releaseDate FROM albums", function(error, results, fields) {
+        mysql.pool.query("SELECT albumID, title, artist, albumArt, genre, releaseDate FROM albums", function(error, results, fields) {
             if (error) {
                 res.write(JSON.stringify(error));
                 res.end();

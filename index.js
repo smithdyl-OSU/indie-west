@@ -9,7 +9,7 @@ const handlebars = require('express-handlebars').create({
     defaultLayout: 'main'
     });
 
-const PORT = process.env.PORT || 3002;
+const PORT = process.env.PORT || 3003;
 const bodyParser = require('body-parser');
 
 
@@ -20,7 +20,7 @@ app.use('/static' ,express.static('public'));
 app.use(express.json());
 
 // Variable Database
-const mysql = require('./dbcon.js');
+let mysql = require('./dbcon.js');
 
 app.set('mysql', mysql);
 
