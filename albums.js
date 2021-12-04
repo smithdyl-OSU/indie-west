@@ -1,10 +1,10 @@
-module.exports = function() {
+module.exports = function () {
     const express = require('express');
     let router = express.Router();
 
     // function that gets album information from the database
     function getAlbums(res, mysql, context, complete) {
-        mysql.pool.query("SELECT albumID, title, artist, albumArt, genre, releaseDate FROM albums", function(error, results, fields) {
+        mysql.pool.query("SELECT albumID, title, artist, genre, releaseDate, artist FROM albums", function (error, results, fields) {
             if (error) {
                 res.write(JSON.stringify(error));
                 res.end();
@@ -27,6 +27,24 @@ module.exports = function() {
                 res.render('albums', context);
             }
         }
+    });
+
+    // insert new album to database
+    router.post('/', function (req, res) {
+        console.log(req.body.bar)
+        console.log(req.body)
+        var mysql = req.app.get('mysql');
+        var sql = "INSERT INTO Albums (title, artist, genre, releaseDate, artist) VALUES (?)";
+        var values = [req.body.artistName];
+        sql = mysql.pool.query(sql, values, function (error, results, fields) {
+            if (error) {
+                console.log(JSON.stringify(error))
+                res.write(JSON.stringify(error));
+                res.end();
+            } else {
+                res.redirect('/artists');
+            }
+        });
     });
 
     return router;
