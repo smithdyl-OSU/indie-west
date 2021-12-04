@@ -65,8 +65,8 @@
         <tr>
           <th scope="col">AlbumID</th>
           <th scope="col">Title</th>
-          <th scope="col">Genre</th>
           <th scope="col">Album Art</th>
+          <th scope="col">Genre</th>
           <th scope="col">Release</th>
           <th scope="col">Artist</th>
           <th scope="col">Update</th>
@@ -79,8 +79,8 @@
         <tr>
           <td>{{albumID}}</td>
           <td>{{title}}</td>
-          <td>{{genre}}</td>
           <td>{{albumArt}}</td>
+          <td>{{genre}}</td>
           <td>{{releaseDate}}</td>
           <td>{{artist}}</td>
           <td><a href="">Edit</a></td>
@@ -95,19 +95,19 @@
     <form class="row g-3">
       <div class="col-md-4">
         <label for="inputTitle" class="form-label">Title</label>
-        <input name="albumTitle" type="text" class="form-control" id="inputTitle">
+        <input name="albumTitle" type="text" class="form-control" id="inputTitle" required>
       </div>
       <div class="col-md-4">
         <label for="inputGenre" class="form-label">Genre</label>
-        <input name="albumGenre" type="text" class="form-control" id="inputGenre">
+        <input name="albumGenre" type="text" class="form-control" id="inputGenre" required>
       </div>
       <div class="col-md-4">
         <label for="inputDate" class="form-label">Release Date</label>
-        <input name="albumDate" type="date" class="form-control" id="inputDate">
+        <input name="albumDate" type="date" class="form-control" id="inputDate" required>
       </div>
       <div class="col-md-4">
         <label for="inputArtist" class="form-label">Artist</label>
-        <input name="albumArtist" type="text" class="form-control" id="inputArtist">
+        <input name="albumArtist" type="text" class="form-control" id="inputArtist" required>
       </div>
       <div class="mb-3">
         <label for="formFile" class="form-label">Album Art Cover (insert as .png or .jpg)</label>
