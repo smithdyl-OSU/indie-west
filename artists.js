@@ -29,5 +29,23 @@ module.exports = function () {
         }
     });
 
+    // insert new artist to database
+    router.post('/', function (req, res) {
+        console.log(req.body.bar)
+        console.log(req.body)
+        var mysql = req.app.get('mysql');
+        var sql = "INSERT INTO Artists (name) VALUES (?)";
+        var inserts = [req.body.name];
+        sql = mysql.pool.query(sql, inserts, function (error, results, fields) {
+            if (error) {
+                console.log(JSON.stringify(error))
+                res.write(JSON.stringify(error));
+                res.end();
+            } else {
+                res.redirect('/artists');
+            }
+        });
+    });
+
     return router;
 }();
