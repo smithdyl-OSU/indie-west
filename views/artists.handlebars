@@ -83,13 +83,13 @@
         <br>
         <br>
 
-        <form class="row g-3">
+        <form class="row g-3" method="post" action="/artist">
             <div class="col-md-4">
                 <label for="inputTitle" class="form-label">Name</label>
-                <input type="text" class="form-control" id="inputTitle">
+                <input name="artistName" type="text" class="form-control" id="inputTitle" required>
                 <br>
                 <div class="col-12">
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button id="artistInsert" type="submit" class="btn btn-primary">Submit</button>
                 </div>
         </form>
 </body>
