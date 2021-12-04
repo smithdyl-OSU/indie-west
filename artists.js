@@ -1,7 +1,6 @@
 module.exports = function () {
     const express = require('express');
     const router = express.Router();
-    const form = document.getElementById('newArtist');
 
     // function that gets artist information from the database
     function getArtists(res, mysql, context, complete) {
