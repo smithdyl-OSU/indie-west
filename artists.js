@@ -30,23 +30,5 @@ module.exports = function () {
         }
     });
 
-    // insert new artist to database
-    router.post('/', function (req, res) {
-        console.log(req.body.bar)
-        console.log(req.body)
-        var mysql = req.app.get('mysql');
-        var sql = "INSERT INTO Artists (name) VALUES (?)";
-        var values = [req.body.artistName];
-        sql = mysql.pool.query(sql, values, function (error, results, fields) {
-            if (error) {
-                console.log(JSON.stringify(error))
-                res.write(JSON.stringify(error));
-                res.end();
-            } else {
-                res.redirect('/artists');
-            }
-        });
-    });
-
     return router;
 }();
