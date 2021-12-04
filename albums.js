@@ -34,7 +34,7 @@ module.exports = function () {
         console.log(req.body.bar)
         console.log(req.body)
         var mysql = req.app.get('mysql');
-        var sql = "INSERT INTO Albums (title, artist, genre, releaseDate, artist) VALUES (?)";
+        var sql = "INSERT INTO Albums (title, genre, albumArt, releaseDate, artist) VALUES (?)";
         var values = [req.body.artistName];
         sql = mysql.pool.query(sql, values, function (error, results, fields) {
             if (error) {
