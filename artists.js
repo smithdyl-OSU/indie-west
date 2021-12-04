@@ -48,7 +48,7 @@ module.exports = function () {
     });
 
     // delete artist from database
-    router.delete('/:id', function (req, res) {
+    router.delete('/delete/:id', function (req, res) {
         var mysql = req.app.get('mysql');
         var sql = "DELETE FROM Artists WHERE artistID=?";
         var values = [req.params.id];
