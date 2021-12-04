@@ -1,6 +1,7 @@
 module.exports = function () {
     const express = require('express');
     const router = express.Router();
+    const form = document.getElementById('newArtist');
 
     // function that gets artist information from the database
     function getArtists(res, mysql, context, complete) {
@@ -29,21 +30,27 @@ module.exports = function () {
         }
     });
 
-    // insert new artist to database
-    router.post('/', function (req, res) {
-        console.log(req.body.bar)
-        console.log(req.body)
-        var mysql = req.app.get('mysql');
-        var sql = "INSERT INTO Artists (name) VALUES (?)";
-        var values = [req.body.inputName];
-        sql = mysql.pool.query(sql, values, function (error, results, fields) {
-            if (error) {
-                console.log(JSON.stringify(error))
-                res.write(JSON.stringify(error));
-                res.end();
-            } else {
-                res.redirect('/artists');
-            }
+
+
+    form.addEventListener('submit', (event) => {
+
+        // insert new artist to database
+        router.post('/', function (req, res) {
+            const artistName = form.elements['artistName'];
+            console.log(req.body.bar)
+            console.log(req.body)
+            var mysql = req.app.get('mysql');
+            var sql = "INSERT INTO Artists (name) VALUES (?)";
+            var values = [artistName];
+            sql = mysql.pool.query(sql, values, function (error, results, fields) {
+                if (error) {
+                    console.log(JSON.stringify(error))
+                    res.write(JSON.stringify(error));
+                    res.end();
+                } else {
+                    res.redirect('/artists');
+                }
+            });
         });
     });
 
