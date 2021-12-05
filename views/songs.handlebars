@@ -79,7 +79,7 @@
                 <tr>
                     <td>{{songID}}</td>
                     <td>{{title}}</td>
-                    <td>{{length}}</td>
+                    <td>{{songLength}}</td>
                     <td>{{artistID}}</td>
                     <td>{{albumID}}</td>
                     <td><a href="">Edit</a></td>
@@ -94,22 +94,22 @@
         <form class="row g-3">
             <div class="col-md-3">
                 <label for="inputTitle" class="form-label">Title</label>
-                <input type="text" class="form-control" id="inputTitle">
+                <input name="songTitle" type="text" class="form-control" id="inputTitle">
             </div>
             <div class="col-md-3">
                 <label for="inputTime" class="form-label">Length</label>
-                <input type="time" class="form-control" id="inputTime">
+                <input name="songLength" type="time" class="form-control" id="inputTime">
             </div>
             <div class="col-md-3">
                 <label for="inputArtist" class="form-label">Artist</label>
-                <input type="text" class="form-control" id="inputArtist">
+                <input name="songArtist" type="text" class="form-control" id="inputArtist">
             </div>
             <div class="col-md-3">
                 <label for="inputAlbum" class="form-label">Album</label>
-                <input type="text" class="form-control" id="inputAlbum">
+                <input name="songAlbum" type="text" class="form-control" id="inputAlbum">
             </div>
             <div class="col-12">
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button id="songInsert" type="submit" class="btn btn-primary">Submit</button>
             </div>
         </form>
 </body>
