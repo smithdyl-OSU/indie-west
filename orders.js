@@ -34,7 +34,7 @@ module.exports = function () {
         console.log(req.body.bar)
         console.log(req.body)
         var mysql = req.app.get('mysql');
-        var sql = "INSERT INTO Orders (userID) VALUES (?)";
+        var sql = "INSERT INTO orders (userID) VALUES (?)";
         var values = [req.body.userID];
         sql = mysql.pool.query(sql, values, function (error, results, fields) {
             if (error) {

@@ -4,7 +4,7 @@ module.exports = function () {
 
     // function that gets user information from the database
     function getUsers(res, mysql, context, complete) {
-        mysql.pool.query("SELECT userID, firstName, lastName, birthDate, email, zip FROM users", function (error, results, fields) {
+        mysql.pool.query("SELECT customerID, firstName, lastName, birthDate, email, zip FROM users", function (error, results, fields) {
             if (error) {
                 res.write(JSON.stringify(error));
                 res.end();
@@ -34,7 +34,7 @@ module.exports = function () {
         console.log(req.body.bar)
         console.log(req.body)
         var mysql = req.app.get('mysql');
-        var sql = "INSERT INTO Users (firstName, lastName, birthDate, email, zip) VALUES (?,?,?,?,?)";
+        var sql = "INSERT INTO users (firstName, lastName, birthDate, email, zip) VALUES (?,?,?,?,?)";
         var values = [req.body.userFirstName, req.body.userLastName, req.body.userBirthDate, req.body.userEmail, req.body.userZip];
         sql = mysql.pool.query(sql, values, function (error, results, fields) {
             if (error) {
