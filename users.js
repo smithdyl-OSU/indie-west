@@ -29,6 +29,22 @@ module.exports = function () {
         }
     });
 
-
+    // insert new user to database
+    router.post('/', function (req, res) {
+        console.log(req.body.bar)
+        console.log(req.body)
+        var mysql = req.app.get('mysql');
+        var sql = "INSERT INTO users (firstName, lastName, birthDate, email, zip) VALUES (?,?,?,?,?)";
+        var values = [req.body.userFirstName, req.body.userLastName, req.body.userBirthDate, req.body.userEmail, req.body.userZip];
+        sql = mysql.pool.query(sql, values, function (error, results, fields) {
+            if (error) {
+                console.log(JSON.stringify(error))
+                res.write(JSON.stringify(error));
+                res.end();
+            } else {
+                res.redirect('/users');
+            }
+        });
+    });
 
 }
