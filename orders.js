@@ -1,6 +1,6 @@
 module.exports = function () {
     const express = require('express');
-    let router = express.Router();
+    const router = express.Router();
 
     // function that gets order information from the database
     function getOrders(res, mysql, context, complete) {

@@ -1,6 +1,6 @@
 module.exports = function () {
     const express = require('express');
-    let router = express.Router();
+    const router = express.Router();
 
     // function that gets album information from the database
     function getAlbums(res, mysql, context, complete) {
