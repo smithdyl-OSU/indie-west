@@ -71,7 +71,7 @@
                     <td>{{artistID}}</td>
                     <td>{{name}}</td>
                     <td><a href="">Edit</a></td>
-                    <td><a href="/artists/" +{{ArtistID}}>Delete</a></td>
+                    <td><button onclick="deleteArtist({{ArtistID}})">Delete</button></td>
                 </tr>
                 {{/each}}
             </tbody>

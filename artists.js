@@ -47,6 +47,17 @@ module.exports = function () {
         });
     });
 
+    // function to parse delete requests
+    function deleteArtist(id) {
+        $.ajax({
+            url: '/artists/' + id,
+            type: 'DELETE',
+            success: function (result) {
+                window.location.reload(true);
+            }
+        })
+    };
+
     // delete artist from database
     router.delete('/:id', function (req, res) {
         var mysql = req.app.get('mysql');
