@@ -2,25 +2,25 @@ module.exports = function () {
     const express = require('express');
     let router = express.Router();
 
-    // function that gets album information from the database
+    // function that gets order information from the database
     function getOrders(res, mysql, context, complete) {
         mysql.pool.query("SELECT orderID, userID FROM orders", function (error, results, fields) {
             if (error) {
                 res.write(JSON.stringify(error));
                 res.end();
             }
-            context.albums = results;
+            context.orders = results;
             complete();
         });
     }
 
-    // displays albums page
+    // displays orders page
     router.get('/', (req, res) => {
         let callbackCount = 0;
         let context = {}; // context object to pass to the callback function
         context.jsscripts = []; // array of javascript files to include in the view
         let mysql = req.app.get('mysql');
-        getAlbums(res, mysql, context, complete);
+        getOrders(res, mysql, context, complete);
         function complete() {
             callbackCount++;
             if (callbackCount >= 1) {
@@ -29,7 +29,7 @@ module.exports = function () {
         }
     });
 
-    // insert new album to database
+    // insert new order to database
     router.post('/', function (req, res) {
         console.log(req.body.bar)
         console.log(req.body)
