@@ -61,7 +61,7 @@ module.exports = function () {
     // delete artist from database
     router.delete('/:id', function (req, res) {
         var mysql = req.app.get('mysql');
-        var sql = "DELETE FROM Artists WHERE artistID=?";
+        var sql = "DELETE FROM artists WHERE artistID=?";
         var values = [req.params.id];
         sql = mysql.pool.query(sql, values, function (error, results, fields) {
             if (error) {
@@ -73,7 +73,7 @@ module.exports = function () {
                 res.status(202).end();
             }
         })
-    })
+    });
 
     return router;
 }();
