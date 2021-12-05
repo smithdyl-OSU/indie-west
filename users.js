@@ -1,6 +1,6 @@
 module.exports = function () {
-    var express = require('express');
-    var router = express.Router();
+    const express = require('express');
+    const router = express.Router();
 
     // function that gets user information from the database
     function getUsers(res, mysql, context, complete) {
@@ -15,15 +15,15 @@ module.exports = function () {
     }
 
     // displays users page
-    router.get('/', function (req, res) {
-        var callbackCount = 0;
-        var context = {};
+    router.get('/', (req, res) => {
+        let callbackCount = 0;
+        let context = {};
         context.jsscripts = [];
-        var mysql = req.app.get('mysql');
+        let mysql = req.app.get('mysql');
         getUsers(res, mysql, context, complete);
         function complete() {
             callbackCount++;
-            if (callbackCount >= 2) {
+            if (callbackCount >= 1) {
                 res.render('users', context);
             }
         }
