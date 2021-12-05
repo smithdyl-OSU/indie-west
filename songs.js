@@ -2,9 +2,9 @@ module.exports = function () {
     const express = require('express');
     const router = express.Router();
 
-    // function that gets album information from the database
+    // function that gets songs information from the database
     function getSongs(res, mysql, context, complete) {
-        mysql.pool.query("SELECT songID, title, songLength, artistID, albumID, FROM songs", function (error, results, fields) {
+        mysql.pool.query("SELECT songID, title, songLength, artistID, albumID FROM songs", function (error, results, fields) {
             if (error) {
                 res.write(JSON.stringify(error));
                 res.end();
@@ -29,7 +29,7 @@ module.exports = function () {
         }
     });
 
-    // insert new album to database
+    // insert new song to database
     router.post('/', function (req, res) {
         console.log(req.body.bar)
         console.log(req.body)
