@@ -72,7 +72,7 @@
         </tr>
       </thead>
       <tbody>
-        {{#each album}}
+        {{#each users}}
         <tr>
           <td>{{customerID}}</td>
           <td>{{firstName}}</td>
@@ -86,29 +86,29 @@
         {{/each}}
       </tbody>
     </table>
-    <form class="row g-3">
+    <form class="row g-3" method="post" action="/users">
       <div class="col-md-4">
         <label for="inputFirstName" class="form-label">First Name</label>
-        <input type="text" class="form-control" id="inputTitle">
+        <input name="userFirstName" type="text" class="form-control" id="inputTitle">
       </div>
       <div class="col-md-4">
         <label for="inputLastName" class="form-label">Last Name</label>
-        <input type="text" class="form-control" id="inputGenre">
+        <input name="userLastName" type="text" class="form-control" id="inputGenre">
       </div>
       <div class="col-md-4">
         <label for="inputBirthDate" class="form-label">Birth Date</label>
-        <input type="date" class="form-control" id="inputDate">
+        <input name="userBirthDate" type="date" class="form-control" id="inputDate">
       </div>
       <div class="col-md-4">
         <label for="inputEmail" class="form-label">Email</label>
-        <input type="text" class="form-control" id="inputTitle">
+        <input name="userEmail" type="text" class="form-control" id="inputTitle">
       </div>
       <div class="col-md-4">
         <label for="inputZip" class="form-label">Zip</label>
-        <input type="text" class="form-control" id="inputTitle">
+        <input name="userZip" type="text" class="form-control" id="inputTitle">
       </div>
       <div class="col-12">
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button id="userInsert" type="submit" class="btn btn-primary">Submit</button>
       </div>
     </form>
 </body>
