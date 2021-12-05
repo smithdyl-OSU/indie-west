@@ -36,7 +36,7 @@ module.exports = function () {
         var mysql = req.app.get('mysql');
         //var length = req.body.songLengthMin + ":" + req.body.songLengthSec
         var sql = "INSERT INTO Songs (title, songLength, artistID, albumID) VALUES (?,?,?,?)";
-        var values = [req.body.songTitle, req.body.songlength, req.body.songArtist, req.body.songAlbum];
+        var values = [req.body.songTitle, req.body.songLength, req.body.songArtist, req.body.songAlbum];
         sql = mysql.pool.query(sql, values, function (error, results, fields) {
             if (error) {
                 console.log(JSON.stringify(error))

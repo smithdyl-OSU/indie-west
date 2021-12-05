@@ -94,19 +94,20 @@
         <form class="row g-3" method="post" action="/songs">
             <div class="col-md-3">
                 <label for="inputTitle" class="form-label">Title</label>
-                <input name="songTitle" type="text" class="form-control" id="inputTitle">
+                <input name="songTitle" type="text" class="form-control" id="inputTitle" required>
             </div>
             <div class="col-md-3">
                 <label for="inputTime" class="form-label">Length</label>
-                <input name="songLength" type="text" class="form-control" id="inputTime">
+                <input name="songLength" type="text" pattern="[0-9]{2}:[0-9]{2}" placeholder="--:--"
+                    class="form-control" id="inputTime" required>
             </div>
             <div class="col-md-3">
                 <label for="inputArtist" class="form-label">Artist</label>
-                <input name="songArtist" type="text" class="form-control" id="inputArtist">
+                <input name="songArtist" type="text" class="form-control" id="inputArtist" required>
             </div>
             <div class="col-md-3">
                 <label for="inputAlbum" class="form-label">Album</label>
-                <input name="songAlbum" type="text" class="form-control" id="inputAlbum">
+                <input name="songAlbum" type="text" class="form-control" id="inputAlbum" required>
             </div>
             <div class="col-12">
                 <button id="songInsert" type="submit" class="btn btn-primary">Submit</button>
