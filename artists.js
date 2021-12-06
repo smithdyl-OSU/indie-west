@@ -1,6 +1,6 @@
 module.exports = function () {
-    const express = require('express');
-    const router = express.Router();
+    let express = require('express');
+    let router = express.Router();
 
     // function that gets artist information from the database
     function getArtists(res, mysql, context, complete) {
@@ -18,7 +18,7 @@ module.exports = function () {
     router.get('/', (req, res) => {
         let callbackCount = 0;
         let context = {}; // context object to pass to the callback function
-        context.jsscripts = [];
+        context.jsscripts = ['deleteArtist.js']; // array of javascript files to include in the page
         let mysql = req.app.get('mysql');
         getArtists(res, mysql, context, complete);
         function complete() {
@@ -47,19 +47,9 @@ module.exports = function () {
         });
     });
 
-    // function to parse delete requests
-    function deleteArtist(id) {
-        $.ajax({
-            url: '/artists/' + id,
-            type: 'DELETE',
-            success: function (result) {
-                window.location.reload(true);
-            }
-        })
-    };
-
     // delete artist from database
     router.delete('/:id', function (req, res) {
+        console.log('hi')
         var mysql = req.app.get('mysql');
         var sql = "DELETE FROM artists WHERE artistID=?";
         var values = [req.params.id];
