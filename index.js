@@ -31,7 +31,7 @@ app.use('/songs', require('./songs.js'));
 app.use('/orders', require('./orders.js'));
 app.use('/users', require('./users.js'));
 app.use('/album_owners', require('./album_owners.js'));
-app.use('/order_contents', require('./order_)contets.js'));
+app.use('/order_contents', require('./order_contets.js'));
 app.use('/', require('./home.js'));
 
 // Renders a 404 status code if the page is not found
