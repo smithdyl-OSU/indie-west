@@ -30,8 +30,8 @@ app.use('/albums', require('./albums.js'));
 app.use('/songs', require('./songs.js'));
 app.use('/orders', require('./orders.js'));
 app.use('/users', require('./users.js'));
-app.use('/album_owners', require('./album_owners.js'));
-app.use('/order_contents', require('./order_contents.js'));
+//app.use('/album_owners', require('./album_owners.js'));
+//app.use('/order_contents', require('./order_contents.js'));
 app.use('/', require('./home.js'));
 
 // Renders a 404 status code if the page is not found
