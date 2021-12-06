@@ -3,7 +3,7 @@ const mysql = require('mysql')
 
 // create a connection pool using the crednetials below
 const pool = mysql.createPool({
-    connectionLimit: 100,
+    connectionLimit: 10,
     host: 'us-cdbr-east-04.cleardb.com',
     user: 'bc4d0d06feb538',
     password: '0cdf823c',
