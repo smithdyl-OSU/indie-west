@@ -1,6 +1,6 @@
 module.exports = function () {
-    const express = require('express');
-    const router = express.Router();
+    let express = require('express');
+    let router = express.Router();
 
     // function that gets users information from the database
     function getUsers(res, mysql, context, complete) {
@@ -47,4 +47,6 @@ module.exports = function () {
         });
     });
 
-}
+    return router;
+
+}();
