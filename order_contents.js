@@ -4,7 +4,7 @@ module.exports = function () {
 
     // function that gets artist information from the database
     function getOrderContents(res, mysql, context, complete) {
-        mysql.pool.query("SELECT artistID, name FROM order_contents", function (error, results, fields) {
+        mysql.pool.query("SELECT orderID, albumID FROM order_contents", function (error, results, fields) {
             if (error) {
                 res.write(JSON.stringify(error));
                 res.end();
@@ -34,8 +34,8 @@ module.exports = function () {
         console.log(req.body.bar)
         console.log(req.body)
         let mysql = req.app.get('mysql');
-        let sql = "INSERT INTO order_contents (name) VALUES (?)";
-        let values = [req.body.artistName];
+        let sql = "INSERT INTO order_contents (orderID, albumID) VALUES (?,?)";
+        let values = [req.body.orderID, req.body.albumID];
         sql = mysql.pool.query(sql, values, function (error, results, fields) {
             if (error) {
                 console.log(JSON.stringify(error))
