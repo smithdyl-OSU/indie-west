@@ -34,14 +34,6 @@
 </nav>
 
 <body>
-  <!-- Does the UI utilize a SELECT for every table in the schema? In other words, data from each table in the schema should be displayed on the UI. Note: it is generally not acceptable for just a single query to join all tables and displays them.
-	Does at least one SELECT utilize a search/filter with a dynamically populated list of properties?
-	Does the UI implement an INSERT for every table in the schema? In other words, there should be UI input fields that correspond to each table and attribute in that table.
-	Does each INSERT also add the corresponding FK attributes, including at least one M:M relationship? In other words if there is a M:M relationship between Orders and Products, then we expect a way to INSERTing a new row to Order (e.g. orderID, customerID, date, total), and also to INSERT row(s) in the intersection table, e.g. OrderDetails (orderID, productID, qty, price and line_total).
-	Is there at least one DELETE and does at least one DELETE remove things from a M:M relationship? In other words, if an order is deleted from the Orders table, it should also delete the corresponding rows from the OrderDetails table, BUT it should not delete any Products or Customers.
-	Is there at least one UPDATE for any one entity? In other words, in the case of Products, can productName, listPrice, qtyOnHand, e.g. be updated for a single ProductID record?
-	Is at least one relationship NULLable? In other words, there should be at least one optional relationship, e.g. having an Employee might be optional for any Order. Thus it should be feasible to edit an Order and change the value of Employee to be empty.
-	Do you have any other suggestions for the team to help with their HTML UI? -->
   <div class="container">
     <div class="row">
       <div class="text-center">
@@ -69,43 +61,27 @@
         </tr>
       </thead>
       <tbody>
+        {{#each order_contents}}
         <tr>
-          <td>1</td>
-          <td>2</td>
+          <td>{{orderID}}</td>
+          <td>{{albumID}}</td>
           <td><a href="">Edit</a></td>
-          <td><a href="">Delete</a></td>
+          <td><button onclick="deleteArtist({{orderID}})">Delete</button></td>
         </tr>
-        <tr>
-          <td>2</td>
-          <td>1</td>
-          <td><a href="">Edit</a></td>
-          <td><a href="">Delete</a></td>
-        </tr>
-        <tr>
-          <td>3</td>
-          <td>3</td>
-          <td><a href="">Edit</a></td>
-          <td><a href="">Delete</a></td>
-        </tr>
-        <tr>
-          <td>1</td>
-          <td>3</td>
-          <td><a href="">Edit</a></td>
-          <td><a href="">Delete</a></td>
-        </tr>
+        {{/each}}
       </tbody>
     </table>
-    <form class="row g-3">
+    <form class="row g-3" method="post" action="/order_contents">
       <div class="col-md-4">
         <label for="inputOrderID" class="form-label">Order ID</label>
-        <input type="text" class="form-control" id="inputTitle">
+        <input name="orderID" type="text" class="form-control" id="inputTitle">
       </div>
       <div class="col-md-4">
         <label for="inputAlbumID" class="form-label">Album ID</label>
-        <input type="text" class="form-control" id="inputTitle">
+        <input name="albumID" type="text" class="form-control" id="inputTitle">
       </div>
       <div class="col-12">
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button id="orderContentsInsert" type="submit" class="btn btn-primary">Submit</button>
       </div>
     </form>
 </body>

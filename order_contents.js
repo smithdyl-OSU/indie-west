@@ -3,28 +3,28 @@ module.exports = function () {
     let router = express.Router();
 
     // function that gets artist information from the database
-    function getArtists(res, mysql, context, complete) {
-        mysql.pool.query("SELECT artistID, name FROM artists", function (error, results, fields) {
+    function getOrderContents(res, mysql, context, complete) {
+        mysql.pool.query("SELECT artistID, name FROM order_contents", function (error, results, fields) {
             if (error) {
                 res.write(JSON.stringify(error));
                 res.end();
             }
-            context.artists = results;
+            context.order_contents = results;
             complete();
         });
     }
 
-    // displays artists page
+    // displays order_contents page
     router.get('/', (req, res) => {
         let callbackCount = 0;
         let context = {}; // context object to pass to the callback function
         context.jsscripts = ['deleteArtist.js']; // array of javascript files to include in the page
         let mysql = req.app.get('mysql');
-        getArtists(res, mysql, context, complete);
+        getOrderContents(res, mysql, context, complete);
         function complete() {
             callbackCount++;
             if (callbackCount >= 1) {
-                res.render('artists', context);
+                res.render('order_contents', context);
             }
         }
     });
@@ -34,7 +34,7 @@ module.exports = function () {
         console.log(req.body.bar)
         console.log(req.body)
         let mysql = req.app.get('mysql');
-        let sql = "INSERT INTO artists (name) VALUES (?)";
+        let sql = "INSERT INTO order_contents (name) VALUES (?)";
         let values = [req.body.artistName];
         sql = mysql.pool.query(sql, values, function (error, results, fields) {
             if (error) {
@@ -42,7 +42,7 @@ module.exports = function () {
                 res.write(JSON.stringify(error));
                 res.end();
             } else {
-                res.redirect('/artists');
+                res.redirect('/order_contents');
             }
         });
     });
@@ -50,7 +50,7 @@ module.exports = function () {
     // delete artist from database
     router.delete('/:id', function (req, res) {
         let mysql = req.app.get('mysql');
-        let sql = "DELETE FROM artists WHERE artistID=?";
+        let sql = "DELETE FROM order_contents WHERE orderID=?";
         let values = [req.params.id];
         sql = mysql.pool.query(sql, values, function (error, results, fields) {
             if (error) {
