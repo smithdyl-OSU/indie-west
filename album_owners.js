@@ -4,7 +4,7 @@ module.exports = function () {
 
     // function that gets artist information from the database
     function getAlbumOwners(res, mysql, context, complete) {
-        mysql.pool.query("SELECT userID, albumID FROM album_owners", function (error, results, fields) {
+        mysql.pool.query("SELECT customerID, albumID FROM album_owners", function (error, results, fields) {
             if (error) {
                 res.write(JSON.stringify(error));
                 res.end();
@@ -34,8 +34,8 @@ module.exports = function () {
         console.log(req.body.bar)
         console.log(req.body)
         let mysql = req.app.get('mysql');
-        let sql = "INSERT INTO album_owners (userID, albumID) VALUES (?,?)";
-        let values = [req.body.userID, req.body.albumID];
+        let sql = "INSERT INTO album_owners (customerID, albumID) VALUES (?,?)";
+        let values = [req.body.customerID, req.body.albumID];
         sql = mysql.pool.query(sql, values, function (error, results, fields) {
             if (error) {
                 console.log(JSON.stringify(error))
