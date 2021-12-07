@@ -15,9 +15,9 @@ module.exports = function () {
     }
 
     // function that gets one artist for updating
-    function getArtistToUpdate(res, mysql, context, id, complete) {
-        let sql = "SELECT id as artistID, name FROM artists WHERE artistID = ?";
-        let inserts = [id];
+    function getArtistToUpdate(res, mysql, context, artistID, complete) {
+        let sql = "SELECT artistID as artistID, name FROM artists WHERE artistID = ?";
+        let inserts = [artistID];
         mysql.pool.query(sql, inserts, function (error, results, fields) {
             if (error) {
                 res.write(JSON.stringify(error));
@@ -83,7 +83,7 @@ module.exports = function () {
         let mysql = req.app.get('mysql');
         console.log(req.body)
         let sql = "UPDATE artists SET name=? WHERE artistID=?";
-        let values = [req.body.name, req.params.id];
+        let values = [req.body.name, req.params.artistID];
         sql = mysql.pool.query(sql, values, function (error, results, fields) {
             if (error) {
                 console.log(error)
