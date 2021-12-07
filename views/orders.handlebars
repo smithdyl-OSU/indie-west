@@ -52,14 +52,15 @@
     <div class="container-fluid">
       <a class="navbar-brand">Search Orders</a>
       <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <input class="form-control me-2" type="text" id="orderSearch" onkeyup="searchOrder()" placeholder="Search"
+          aria-label="Search">
         <button class="btn btn-outline-success" type="submit">Search</button>
       </form>
     </div>
     <br>
     <br>
 
-    <table class="table">
+    <table class="table" id="orderTable">
       <thead>
         <tr>
           <th scope="col">OrderID</th>
@@ -74,7 +75,7 @@
           <td>{{orderID}}</td>
           <td>{{userID}}</td>
           <td><a href="">Edit</a></td>
-          <td><a href="">Delete</a></td>
+          <td><button onclick="deleteOrder({{orderID}})">Delete</button></td>
         </tr>
         {{/each}}
       </tbody>
