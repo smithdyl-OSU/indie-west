@@ -30,7 +30,7 @@ CREATE TABLE `albums` (
     `artist` int(11) not NULL,
     PRIMARY KEY (`albumID`),
     KEY `artist` (`artist`),
-    FOREIGN KEY (`artist`) REFERENCES `artists` (`artistID`)
+    FOREIGN KEY (`artist`) REFERENCES `artists` (`artistID`) ON DELETE CASCADE
 );
 
 --
@@ -75,7 +75,7 @@ CREATE TABLE `orders` (
     `orderID` int AUTO_INCREMENT unique not NULL,
     `userID` int not NULL,
     PRIMARY KEY (`orderID`),
-    FOREIGN KEY (`userID`) REFERENCES `users` (`customerID`)
+    FOREIGN KEY (`userID`) REFERENCES `users` (`customerID`) ON DELETE CASCADE
 );
 
 --
@@ -98,8 +98,8 @@ CREATE TABLE `songs` (
     `artistID` int not NULL,
     `albumID` int,
     PRIMARY KEY (`songID`),
-    FOREIGN KEY (`artistID`) REFERENCES `artists` (`artistID`),
-    FOREIGN KEY (`albumID`) REFERENCES `albums` (`albumID`)
+    FOREIGN KEY (`artistID`) REFERENCES `artists` (`artistID`) ON DELETE CASCADE,
+    FOREIGN KEY (`albumID`) REFERENCES `albums` (`albumID`) ON DELETE CASCADE
 );
 
 --
@@ -119,8 +119,8 @@ DROP TABLE IF EXISTS `album_owners`;
 CREATE TABLE `album_owners` (
     `customerID` int not NULL,
     `albumID` int not NULL,
-    FOREIGN KEY (`albumID`) REFERENCES `albums` (`albumID`),
-    FOREIGN KEY (`customerID`) REFERENCES `users` (`customerID`)
+    FOREIGN KEY (`albumID`) REFERENCES `albums` (`albumID`) ON DELETE CASCADE,
+    FOREIGN KEY (`customerID`) REFERENCES `users` (`customerID`) ON DELETE CASCADE
 );
 
 --
@@ -139,8 +139,8 @@ DROP TABLE IF EXISTS `order_contents`;
 CREATE TABLE `order_contents` (
     `orderID` int not NULL,
     `albumID` int not NULL,
-    FOREIGN KEY (`orderID`) REFERENCES `orders` (`orderID`),
-    FOREIGN KEY (`albumID`) REFERENCES `albums` (`albumID`)
+    FOREIGN KEY (`orderID`) REFERENCES `orders` (`orderID`) ON DELETE CASCADE,
+    FOREIGN KEY (`albumID`) REFERENCES `albums` (`albumID`) ON DELETE CASCADE
 );
 
 --
