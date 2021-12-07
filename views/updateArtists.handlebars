@@ -48,10 +48,10 @@
         <form id='update-artist' class="row g-3" method="post" action="/artists">
             <div class="col-md-4">
                 <label for="inputName" class="form-label">Name</label>
-                <input name="name" type="text" class="form-control" id="inputTitle" required>
+                <input name="name" type="text" class="form-control" required>
                 <br>
                 <div class="col-12">
-                    <button onclick="updateArtist({{artists.artistID}}" type="submit" class="btn btn-primary">Update</button>
+                    <button onclick="updateArtist({{artists.artistID}})" type="submit" class="btn btn-primary" value={{artists.name}}>Update</button>
                 </div>
         </form>
 </body>
