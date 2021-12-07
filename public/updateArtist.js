@@ -3,7 +3,7 @@ function updateArtist(id) {
     $.ajax({
         type: "PUT",
         url: "/artists/" + id,
-        data: $('#updateArtists').serialize(),
+        data: $('#update-artist').serialize(),
         success: function (result) {
             window.location.replace('./');
         }

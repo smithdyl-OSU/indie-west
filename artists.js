@@ -49,7 +49,7 @@ module.exports = function () {
         let context = {}; // context object to pass to the callback function
         context.jsscripts = ['updateArtist.js']; // array of javascript files to include in the page
         let mysql = req.app.get('mysql');
-        getArtistToUpdate(res, mysql, context, req.params.artistID, complete);
+        getArtistToUpdate(res, mysql, context, req.params.id, complete);
         function complete() {
             callbackCount++;
             if (callbackCount >= 1) {
