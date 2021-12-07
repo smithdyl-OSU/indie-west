@@ -82,6 +82,7 @@ module.exports = function () {
     router.put('/:id', function (req, res) {
         let mysql = req.app.get('mysql');
         console.log(req.body)
+        console.log(req.params.artistID)
         let sql = "UPDATE artists SET name=? WHERE artistID=?";
         let values = [req.body.name, req.params.artistID];
         sql = mysql.pool.query(sql, values, function (error, results, fields) {
