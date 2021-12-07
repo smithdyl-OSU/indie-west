@@ -39,54 +39,19 @@
     <div class="container">
         <div class="row">
             <div class="text-center">
-                <h1>Manage Artist</h1>
+                <h1>Update Artist Information</h1>
             </div>
         </div>
-
-        <div class="container-fluid">
-            <a class="navbar-brand">Search Artist</a>
-            <form class="d-flex">
-                <input class="form-control me-2" type="text" id="artistSearch" onkeyup="searchArtist()"
-                    placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
-        </div>
-        <br>
-        <br>
-
-
-        <table class="table" id="artistTable">
-            <thead>
-                <tr>
-                    <th scope="col">ArtistID</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Update</th>
-                    <th scope="col">Remove</th>
-                </tr>
-            </thead>
-
-            <tbody>
-                <!-- Templating for Table Contents -->
-                {{#each artists}}
-                <tr>
-                    <td>{{artistID}}</td>
-                    <td>{{name}}</td>
-                    <td><a href="/artists/{{artistID}}">Edit</a></td>
-                    <td><button onclick="deleteArtist({{artistID}})">Delete</button></td>
-                </tr>
-                {{/each}}
-            </tbody>
-        </table>
         <br>
         <br>
 
         <form class="row g-3" method="post" action="/artists">
             <div class="col-md-4">
-                <label for="inputTitle" class="form-label">Name</label>
+                <label for="inputName" class="form-label">Name</label>
                 <input name="artistName" type="text" class="form-control" id="inputTitle" required>
                 <br>
                 <div class="col-12">
-                    <button id="artistInsert" type="submit" class="btn btn-primary">Submit</button>
+                    <button onclick="updateArtist({{artists.artistID}}" type="submit" class="btn btn-primary">Update</button>
                 </div>
         </form>
 </body>
