@@ -18,7 +18,7 @@ module.exports = function () {
     router.get('/', (req, res) => {
         let callbackCount = 0;
         let context = {}; // context object to pass to the callback function
-        context.jsscripts = ['deleteArtist.js']; // array of javascript files to include in the page
+        context.jsscripts = ['deleteArtist.js', 'searchArtist.js']; // array of javascript files to include in the page
         let mysql = req.app.get('mysql');
         getArtists(res, mysql, context, complete);
         function complete() {
