@@ -2,7 +2,7 @@ module.exports = function () {
     let express = require('express');
     let router = express.Router();
 
-    // function that gets artist information from the database
+    // function that gets order_contents information from the database
     function getOrderContents(res, mysql, context, complete) {
         mysql.pool.query("SELECT orderID, albumID FROM order_contents", function (error, results, fields) {
             if (error) {
@@ -18,7 +18,7 @@ module.exports = function () {
     router.get('/', (req, res) => {
         let callbackCount = 0;
         let context = {}; // context object to pass to the callback function
-        context.jsscripts = ['deleteArtist.js']; // array of javascript files to include in the page
+        context.jsscripts = ['deleteOrderContent.js', 'searchOrderContent.js']; // array of javascript files to include in the page
         let mysql = req.app.get('mysql');
         getOrderContents(res, mysql, context, complete);
         function complete() {
@@ -29,7 +29,7 @@ module.exports = function () {
         }
     });
 
-    // insert new artist to database
+    // insert new order_contents to database
     router.post('/', function (req, res) {
         console.log(req.body.bar)
         console.log(req.body)
@@ -47,7 +47,7 @@ module.exports = function () {
         });
     });
 
-    // delete artist from database
+    // delete order_contents from database
     router.delete('/:id', function (req, res) {
         let mysql = req.app.get('mysql');
         let sql = "DELETE FROM order_contents WHERE orderID=?";

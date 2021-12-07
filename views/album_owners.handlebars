@@ -52,14 +52,15 @@
     <div class="container-fluid">
       <a class="navbar-brand">Search Album Owners</a>
       <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <input class="form-control me-2" type="text" id="albumOwnerSearch" onkeyup="searchAlbumOwner()"
+          placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-success" type="submit">Search</button>
       </form>
     </div>
     <br>
     <br>
 
-    <table class="table">
+    <table class="table" id="albumOwnerTable">
       <thead>
         <tr>
           <th scope="col">CustomerID</th>
@@ -75,7 +76,7 @@
           <td>{{customerID}}</td>
           <td>{{albumID}}</td>
           <td><a href="">Edit</a></td>
-          <td><a href="">Delete</a></td>
+          <td><button onclick="deleteAlbumOwner({{customerID}})">Delete</button></td>
         </tr>
         {{/each}}
       </tbody>

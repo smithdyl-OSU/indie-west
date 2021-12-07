@@ -1,10 +1,10 @@
-// searches table for artist matching input
-function searchArtist() {
+// searches table for order_content matching input
+function searchOrderContent() {
     // Declare variables
     var input, filter, table, row, cell, i, text;
-    input = document.getElementById("artistSearch");
+    input = document.getElementById("orderContentSearch");
     filter = input.value.toUpperCase();
-    table = document.getElementById("artistTable");
+    table = document.getElementById("orderContentTable");
     row = table.getElementsByTagName("tr");
 
     // Loop through all table rows, and hide those who don't match the search query

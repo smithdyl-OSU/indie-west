@@ -18,7 +18,7 @@ module.exports = function () {
     router.get('/', (req, res) => {
         let callbackCount = 0;
         let context = {}; // context object to pass to the callback function
-        context.jsscripts = []; // array of javascript files to include in the view
+        context.jsscripts = ['deleteAlbum.js', 'searchAlbum.js']; // array of javascript files to include in the view
         let mysql = req.app.get('mysql');
         getAlbums(res, mysql, context, complete);
         function complete() {
@@ -45,6 +45,23 @@ module.exports = function () {
                 res.redirect('/albums');
             }
         });
+    });
+
+    // delete album from database
+    router.delete('/:id', function (req, res) {
+        let mysql = req.app.get('mysql');
+        let sql = "DELETE FROM albums WHERE albumID=?";
+        let values = [req.params.id];
+        sql = mysql.pool.query(sql, values, function (error, results, fields) {
+            if (error) {
+                console.log(error)
+                res.write(JSON.stringify(error));
+                res.status(400);
+                res.end();
+            } else {
+                res.status(202).end();
+            }
+        })
     });
 
     return router;

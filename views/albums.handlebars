@@ -52,15 +52,15 @@
     <div class="container-fluid">
       <a class="navbar-brand">Search Albums</a>
       <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
+        <input class="form-control me-2" type="text" id="albumSearch" onkeyup="searchAlbum()" placeholder="Search"
+          aria-label="Search">
       </form>
     </div>
     <br>
     <br>
 
 
-    <table class="table">
+    <table class="table" id="albumTable">
       <thead>
         <tr>
           <th scope="col">AlbumID</th>
@@ -84,7 +84,7 @@
           <td>{{releaseDate}}</td>
           <td>{{artist}}</td>
           <td><a href="">Edit</a></td>
-          <td><a href="">Delete</a></td>
+          <td><button onclick="deleteAlbum({{albumID}})">Delete</button></td>
         </tr>
         {{/each}}
       </tbody>

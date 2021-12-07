@@ -2,7 +2,7 @@ module.exports = function () {
     let express = require('express');
     let router = express.Router();
 
-    // function that gets artist information from the database
+    // function that gets album_owner information from the database
     function getAlbumOwners(res, mysql, context, complete) {
         mysql.pool.query("SELECT customerID, albumID FROM album_owners", function (error, results, fields) {
             if (error) {
@@ -18,7 +18,7 @@ module.exports = function () {
     router.get('/', (req, res) => {
         let callbackCount = 0;
         let context = {}; // context object to pass to the callback function
-        context.jsscripts = ['deleteAlbumOwners.js']; // array of javascript files to include in the page
+        context.jsscripts = ['deleteAlbumOwner.js', 'searchAlbumOwner.js']; // array of javascript files to include in the page
         let mysql = req.app.get('mysql');
         getAlbumOwners(res, mysql, context, complete);
         function complete() {
@@ -29,7 +29,7 @@ module.exports = function () {
         }
     });
 
-    // insert new artist to database
+    // insert new album_owner to database
     router.post('/', function (req, res) {
         console.log(req.body.bar)
         console.log(req.body)
@@ -47,10 +47,10 @@ module.exports = function () {
         });
     });
 
-    // delete artist from database
+    // delete album_owner from database
     router.delete('/:id', function (req, res) {
         let mysql = req.app.get('mysql');
-        let sql = "DELETE FROM album_owners WHERE userID=?";
+        let sql = "DELETE FROM album_owners WHERE customerID=?";
         let values = [req.params.id];
         sql = mysql.pool.query(sql, values, function (error, results, fields) {
             if (error) {
